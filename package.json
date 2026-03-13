@@ -1,0 +1,86 @@
+{
+  "name": "mixref",
+  "version": "1.0.0",
+  "description": "Mixing cheatsheet for drums, guitar, bass, vocals and mastering",
+  "homepage": "https://github.com/oslavdev/mixref",
+  "license": "MIT",
+  "type": "module",
+  "packageManager": "yarn@1.22.22",
+  "engines": {
+    "node": ">=20",
+    "yarn": ">=1.22"
+  },
+  "scripts": {
+    "build": "yarn build:scss",
+    "build:scss": "sass src/scss/main.scss dist/styles.css --style=compressed --no-source-map",
+    "build:scss:dev": "sass src/scss/main.scss dist/styles.css --style=expanded --no-source-map",
+    "dev": "sass src/scss/main.scss dist/styles.css --watch --style=expanded --no-source-map",
+    "lint": "yarn lint:js && yarn lint:scss",
+    "lint:js": "eslint src/js/",
+    "lint:js:fix": "eslint src/js/ --fix",
+    "lint:scss": "stylelint 'src/scss/**/*.scss'",
+    "lint:scss:fix": "stylelint 'src/scss/**/*.scss' --fix",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "danger": "danger ci",
+    "release": "semantic-release",
+    "prepare": "husky",
+    "clean": "rm -rf dist && mkdir dist",
+    "ci:build": "yarn build",
+    "ci:lint:commits": "commitlint --from $(git merge-base master HEAD)",
+    "ci:lint:js": "eslint src/js/ --quiet",
+    "ci:lint:scss": "stylelint 'src/scss/**/*.scss' --quiet",
+    "ci:test": "vitest run --coverage"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "src/js/**/*.js": [
+      "eslint --fix",
+      "vitest related --run"
+    ],
+    "src/scss/**/*.scss": [
+      "stylelint --fix"
+    ]
+  },
+  "release": {
+    "branches": ["master"],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github",
+      [
+        "@semantic-release/git",
+        {
+          "assets": ["package.json", "dist/styles.css"],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "@eslint/js": "^9.27.0",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.3",
+    "@semantic-release/release-notes-generator": "^14.0.3",
+    "@vitest/coverage-v8": "^3.1.4",
+    "danger": "^12.3.3",
+    "eslint": "^9.27.0",
+    "eslint-plugin-jsdoc": "^50.6.17",
+    "husky": "^9.1.7",
+    "jsdom": "^26.1.0",
+    "lint-staged": "^15.5.1",
+    "sass": "^1.86.0",
+    "semantic-release": "^24.2.3",
+    "stylelint": "^16.19.1",
+    "stylelint-config-standard-scss": "^14.0.0",
+    "vitest": "^3.1.4"
+  }
+}

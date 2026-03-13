@@ -1,0 +1,35 @@
+// ─── MAIN SCSS ENTRY ──────────────────────────────────────────────────────────
+// All @use must come first per Sass module rules.
+// Partials each @use tokens as needed.
+
+@use 'tokens' as t;
+@use 'base';
+@use 'layout';
+@use 'nav';
+@use 'components';
+@use 'ui';
+
+// ─── CSS CUSTOM PROPERTIES ────────────────────────────────────────────────────
+// Defined here after all @use rules. All partials reference these via var(--x).
+:root {
+  --bg:   #{t.$color-bg};
+  --bg2:  #{t.$color-bg2};
+  --bg3:  #{t.$color-bg3};
+
+  --text:  #{t.$color-text};
+  --text2: #{t.$color-text2};
+  --text3: #{t.$color-text3};
+
+  --accent: #{t.$color-accent};
+  --cut:    #{t.$color-cut};
+  --boost:  #{t.$color-boost};
+  --watch:  #{t.$color-watch};
+
+  // Hardcoded rgba equivalents (interpolating rgba() in Sass @use context is fussy)
+  --border:  rgba(232, 232, 232, 0.07);
+  --border2: rgba(232, 232, 232, 0.12);
+
+  --font-display: #{t.$font-display};
+  --font-body:    #{t.$font-body};
+  --font-mono:    #{t.$font-mono};
+}

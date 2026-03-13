@@ -1,0 +1,57 @@
+// ─── uses design tokens ──────────────────────────────────────────────────────
+@use 'tokens' as t;
+
+// ─── RESET & BASE ─────────────────────────────────────────────────────────────
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+  // Prevent layout shift from scrollbar
+  overflow-y: scroll;
+}
+
+// Tighten headings globally
+h1, h2, h3, h4 {
+  text-wrap: balance;
+}
+
+// Interactive elements
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+// Remove list semantics where used for layout
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+// Smooth focus rings
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}

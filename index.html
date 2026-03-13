@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mixing cheatsheet for drums, electric guitar, bass, vocals and mastering. EQ, compression, and genre-specific tips for metal, jazz and rock.">
+  <meta name="theme-color" content="#0a0a0b">
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="MixRef — Mixing Cheatsheet">
+  <meta property="og:description" content="EQ and compression reference for drums, guitar, bass, vocals and mastering.">
+  <meta property="og:type"        content="website">
+
+  <title>MixRef — Mixing Cheatsheet</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+  <!-- Styles — compiled from src/scss/ -->
+  <link rel="stylesheet" href="dist/styles.css">
+</head>
+<body>
+
+<!-- Grain texture overlay (pure CSS, no image) -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════ NAV ══ -->
+<nav class="nav" aria-label="Site navigation">
+  <div class="nav-inner">
+
+    <a class="logo" href="#" onclick="showPage('drums')" aria-label="MixRef home">
+      <span class="logo-mark" aria-hidden="true">▣</span>
+      <span class="logo-text">MixRef</span>
+    </a>
+
+    <div class="nav-links" role="list">
+      <button class="nav-btn active" role="listitem" data-page="drums"     onclick="showPage('drums')">Drums</button>
+      <button class="nav-btn"        role="listitem" data-page="guitar"    onclick="showPage('guitar')">Guitar</button>
+      <button class="nav-btn"        role="listitem" data-page="bass"      onclick="showPage('bass')">Bass</button>
+      <button class="nav-btn"        role="listitem" data-page="vocals"    onclick="showPage('vocals')">Vocals</button>
+      <button class="nav-btn"        role="listitem" data-page="mastering" onclick="showPage('mastering')">Mastering</button>
+      <button class="nav-btn"        role="listitem" data-page="glossary"  onclick="showPage('glossary')">Glossary</button>
+    </div>
+
+    <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Open navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu" role="menu">
+    <button class="nav-btn active" role="menuitem" data-page="drums"     onclick="showPage('drums');toggleMobileMenu()">Drums</button>
+    <button class="nav-btn"        role="menuitem" data-page="guitar"    onclick="showPage('guitar');toggleMobileMenu()">Guitar</button>
+    <button class="nav-btn"        role="menuitem" data-page="bass"      onclick="showPage('bass');toggleMobileMenu()">Bass</button>
+    <button class="nav-btn"        role="menuitem" data-page="vocals"    onclick="showPage('vocals');toggleMobileMenu()">Vocals</button>
+    <button class="nav-btn"        role="menuitem" data-page="mastering" onclick="showPage('mastering');toggleMobileMenu()">Mastering</button>
+    <button class="nav-btn"        role="menuitem" data-page="glossary"  onclick="showPage('glossary');toggleMobileMenu()">Glossary</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════════ PAGES ══ -->
+<main id="app">
+
+<!-- ──────────────────────────────────────────────────────────── DRUMS PAGE ── -->
+<article class="page active" id="page-drums" aria-label="Drum mixing">
+
+  <header class="page-hero">
+    <p class="hero-tag">Cheatsheet 01</p>
+    <h1 class="hero-title">Drum Mixing</h1>
+    <p class="hero-sub">EQ, compression and processing — for metal, jazz and rock.</p>
+  </header>
+
+  <div class="content">
+
+    <div class="filter-bar" role="group" aria-label="Genre filter">
+      <span class="filter-label">Genre context:</span>
+      <button class="filter-btn active" onclick="setGenre('all',this)">All</button>
+      <button class="filter-btn" onclick="setGenre('metal',this)">Metal</button>
+      <button class="filter-btn" onclick="setGenre('jazz',this)">Jazz</button>
+      <button class="filter-btn" onclick="setGenre('rock',this)">Rock</button>
+    </div>
+
+    <!-- EQ ─────────────────────────────────────────────────────────────────── -->
+    <section class="section" aria-labelledby="drums-eq-heading">
+      <div class="section-header">
+        <h2 id="drums-eq-heading">EQ — Frequency Guide</h2>
+        <span class="section-pill">Per instrument</span>
+      </div>
+      <p class="section-intro">EQ shapes tone by boosting or cutting specific frequencies. Rule #1: <strong>cut problems first, boost character second.</strong> A clean cut at a bad frequency does more good than ten boosts.</p>
+
+      <!-- KICK -->
+      <div class="drum-block">
+        <div class="drum-header">
+          <div class="drum-icon kick-icon" aria-hidden="true">K</div>
+          <div>
+            <h3>Kick Drum</h3>
+            <p class="drum-role">Foundation. The low-end anchor of your entire mix.</p>
+          </div>
+        </div>
+        <div class="freq-grid">
+          <div class="freq-card cut">
+            <p class="freq-hz">20–40 Hz</p>
+            <p class="freq-action">HIGH-PASS</p>
+            <p class="freq-desc">Sub-rumble that wastes speaker energy. Nothing musical lives here. Cut it and your mix instantly has more room.</p>
+          </div>
+          <div class="freq-card boost">
+            <p class="freq-hz">50–80 Hz</p>
+            <p class="freq-action">BOOST — body</p>
+            <p class="freq-desc">This is where the <span class="tt" data-tip="The low-frequency physical weight of a kick drum. The chest-hitting 'boom'. More thud = heavier, fatter kick. Too much = mix gets boomy and undefined.">thud ?</span> lives — the feeling of the kick hitting your chest. Boost here for that physical heaviness.</p>
+          </div>
+          <div class="freq-card cut">
+            <p class="freq-hz">200–350 Hz</p>
+            <p class="freq-action">CUT — mud</p>
+            <p class="freq-desc">The <span class="tt" data-tip="A blurry, indistinct low-mid buildup at 200–400Hz. Makes everything sound underwater. Almost always needs cutting on multiple instruments simultaneously.">muddy zone ?</span>. Cutting here makes the kick sound cleaner and more defined without losing weight.</p>
+          </div>
+          <div class="freq-card watch">
+            <p class="freq-hz">800 Hz – 1 kHz</p>
+            <p class="freq-action">WATCH — boxy</p>
+            <p class="freq-desc">The <span class="tt" data-tip="A hollow, cardboard resonance sound. Sounds like someone knocking on an empty wooden box. Common on poorly-tuned drums and close-miked guitars in small rooms.">boxy zone ?</span>. If the kick sounds hollow and cheap, make a narrow cut here.</p>
+          </div>
+          <div class="freq-card boost genre-metal genre-rock">
+            <p class="freq-hz">3–5 kHz</p>
+            <p class="freq-action">BOOST — click (metal/rock)</p>
+            <p class="freq-desc">The <span class="tt" data-tip="The sharp transient 'click' sound of the beater hitting the drum head at 3–5kHz. Critical for kick to cut through dense guitar walls. More click = more audible attack and definition.">beater click ?</span> — the attack of the <span class="tt" data-tip="The padded or felt mallet on the bass drum pedal that strikes the drum head. Harder beaters produce more click; softer felt beaters produce more thud.">beater ?</span> striking the head. Essential for kick to be heard through distorted guitars.</p>
+          </div>
+          <div class="freq-card genre-jazz">
+            <p class="freq-hz">1–2 kHz</p>
+            <p class="freq-action">GENTLE BOOST — jazz</p>
+            <p class="freq-desc">In jazz, the kick is often felt more than heard. A slight presence boost helps it speak naturally without overpowering the double bass or piano.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SNARE -->
+      <div class="drum-block">
+        <div class="drum-header">
+          <div class="drum-icon snare-icon" aria-hidden="true">S</div>
+          <div>
+            <h3>Snare Drum</h3>
+            <p class="drum-role">The backbone. Every backbeat, ghost note and accent lives here.</p>
+          </div>
+        </div>
+        <div class="freq-grid">
+          <div class="freq-card boost">
+            <p class="freq-hz">100–200 Hz</p>
+            <p class="freq-action">BOOST — body</p>
+            <p class="freq-desc">Adds <span class="tt" data-tip="The low-mid fullness and weight of a drum (100–300Hz). More body = rounder, fatter tone. Less body = thin and snappy. This is the resonance of the wooden shell.">body ?</span> and fatness to the shell. Makes the snare sound like a real wooden drum, not a tin can.</p>
+          </div>
+          <div class="freq-card cut">
+            <p class="freq-hz">300–500 Hz</p>
+            <p class="freq-action">CUT — cardboard</p>
+            <p class="freq-desc">The dreaded <span class="tt" data-tip="An unpleasant hollow resonance at 300–500Hz. Named because it literally sounds like slapping a cardboard box. A narrow cut here transforms a cheap snare into something solid.">cardboard sound ?</span>. A narrow cut here is one of the most effective single EQ moves in drum mixing.</p>
+          </div>
+          <div class="freq-card boost genre-metal genre-rock">
+            <p class="freq-hz">2–4 kHz</p>
+            <p class="freq-action">BOOST — crack (metal/rock)</p>
+            <p class="freq-desc">The <span class="tt" data-tip="The sharp, aggressive attack of a snare hit. The audible 'snap'. Lives around 2–5kHz. More crack = more aggressive, cutting snare character. Essential for snares to cut through distorted guitars.">crack ?</span> and <span class="tt" data-tip="How immediately and forcefully a drum hits. A punchier sound has more transient energy — you feel it rather than just hear it. Achieved via slower compression attack + presence boosts.">punch ?</span>. What makes a snare sound like a gunshot. Essential for metal and hard rock.</p>
+          </div>
+          <div class="freq-card boost genre-jazz">
+            <p class="freq-hz">8–12 kHz</p>
+            <p class="freq-action">BOOST — wire sizzle (jazz)</p>
+            <p class="freq-desc">The <span class="tt" data-tip="The rattling, buzzy hiss of the metal snare wires against the bottom drum head. Distinctive jazz snare texture. Too much = washy and overwhelming; too little = dead and dull.">snare wire sizzle ?</span>. That characteristic jazz snare shimmer underneath the main hit. Adds air and complexity.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- HI-HAT -->
+      <div class="drum-block">
+        <div class="drum-header">
+          <div class="drum-icon hat-icon" aria-hidden="true">HH</div>
+          <div>
+            <h3>Hi-Hat &amp; Cymbals</h3>
+            <p class="drum-role">Rhythm and texture. The top-end glue of the kit.</p>
+          </div>
+        </div>
+        <div class="freq-grid">
+          <div class="freq-card cut">
+            <p class="freq-hz">&lt; 200 Hz</p>
+            <p class="freq-action">HIGH-PASS — always</p>
+            <p class="freq-desc">Always high-pass cymbals. They produce no useful low-end — only <span class="tt" data-tip="Sound from one instrument leaking into a microphone intended for another. e.g. kick drum bleeding into cymbal mics. Accumulates as mud in the low end.">bleed ?</span> from kick and toms that turns into mix mud.</p>
+          </div>
+          <div class="freq-card cut">
+            <p class="freq-hz">2–4 kHz</p>
+            <p class="freq-action">CUT — harshness</p>
+            <p class="freq-desc">The harsh metallic spitting zone. Too much here causes ear fatigue and makes cheap cymbals sound even cheaper. Cut narrowly until it stops hurting.</p>
+          </div>
+          <div class="freq-card boost">
+            <p class="freq-hz">10–16 kHz</p>
+            <p class="freq-action">BOOST — air</p>
+            <p class="freq-desc"><span class="tt" data-tip="Top-shelf sparkle above ~10kHz. Adds openness, sense of space, and makes things sound expensive and well-recorded. A subtle shelf boost. Too much = brittle and harsh.">Air ?</span> and shimmer. This is where cymbals truly live. A subtle high shelf boost makes them glisten and breathe.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOMS -->
+      <div class="drum-block">
+        <div class="drum-header">
+          <div class="drum-icon tom-icon" aria-hidden="true">T</div>
+          <div>
+            <h3>Toms</h3>
+            <p class="drum-role">Fills and drama. Should punch hard and decay cleanly.</p>
+          </div>
+        </div>
+        <div class="freq-grid">
+          <div class="freq-card cut">
+            <p class="freq-hz">&lt; 60 Hz</p>
+            <p class="freq-action">HIGH-PASS</p>
+            <p class="freq-desc">Toms create subsonic rumble that eats into your low-end budget. High-pass to keep space for the kick and bass.</p>
+          </div>
+          <div class="freq-card boost">
+            <p class="freq-hz">80–120 Hz</p>
+            <p class="freq-action">BOOST — floor tom weight</p>
+            <p class="freq-desc">Floor tom weight and depth. This is what makes fills sound massive and physical rather than plasticky and thin.</p>
+          </div>
+          <div class="freq-card cut">
+            <p class="freq-hz">300–600 Hz</p>
+            <p class="freq-action">CUT — ring</p>
+            <p class="freq-desc">Toms ring and <span class="tt" data-tip="When a drum continues vibrating after being struck, creating a sustained audible pitch. Desirable in jazz for tone and expressiveness; usually problematic in metal/rock where it clashes with guitar chords.">resonate ?</span> in this zone. Cutting here tames the annoying sustained ring without needing a gate.</p>
+          </div>
+          <div class="freq-card boost">
+            <p class="freq-hz">3–5 kHz</p>
+            <p class="freq-action">BOOST — attack</p>
+            <p class="freq-desc">Attack presence. Makes toms cut through a dense mix instead of just feeling like a vague low rumble.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- OVERHEADS -->
+      <div class="drum-block">
+        <div class="drum-header">
+          <div class="drum-icon oh-icon" aria-hidden="true">OH</div>
+          <div>
+            <h3>Overheads / Room Mics</h3>
+            <p class="drum-role">The glue. Should sound like a complete drum kit on their own.</p>
+          </div>
+        </div>
+        <div class="freq-grid">
+          <div class="freq-card cut">
+            <p class="freq-hz">&lt; 80–100 Hz</p>
+            <p class="freq-action">HIGH-PASS</p>
+            <p class="freq-desc">Kick and bass are handled by close mics. High-pass overheads to prevent low-end buildup and phase cancellation issues.</p>
+          </div>
+          <div class="freq-card watch">
+            <p class="freq-hz">300–600 Hz</p>
+            <p class="freq-action">WATCH — room mud</p>
+            <p class="freq-desc">Room reflections accumulate here. Cut if the overheads sound murky or like the drums are playing inside a cardboard box.</p>
+          </div>
+          <div class="freq-card boost">
+            <p class="freq-hz">8–12 kHz</p>
+            <p class="freq-action">BOOST — air</p>
+            <p class="freq-desc">A gentle high shelf boost opens up the overheads and adds the expensive, airy cymbal sound that makes a drum recording feel professional.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPRESSION ─────────────────────────────────────────────────────────── -->
+    <section class="section" aria-labelledby="drums-comp-heading">
+      <div class="section-header">
+        <h2 id="drums-comp-heading">Compression</h2>
+        <span class="section-pill">Control dynamics</span>
+      </div>
+      <p class="section-intro">A compressor is an <strong>automatic volume knob</strong>. When your signal gets too loud, it turns it down automatically. When you then bring it back up with makeup gain, everything becomes more even — quiet hits get louder, loud hits get tamed.</p>
+
+      <div class="knob-explainer">
+        <div class="knob-item">
+          <p class="knob-name">Threshold <span class="tt" data-tip="The volume level at which compression activates. Only signals LOUDER than this get compressed. Lower threshold = more of the signal gets affected. Higher threshold = only the loudest peaks get touched.">?</span></p>
+          <p class="knob-val">Start: −12 to −18 dB</p>
+          <p class="knob-desc">Where compression kicks in. Think of it as the ceiling before your signal gets tamed. Lower = more gets compressed overall.</p>
+        </div>
+        <div class="knob-item">
+          <p class="knob-name">Ratio <span class="tt" data-tip="How aggressively the compressor clamps down once the signal crosses the threshold. 4:1 = for every 4dB over threshold, only 1dB gets through. 2:1 is gentle. 8:1 is firm. 20:1+ is limiting.">?</span></p>
+          <p class="knob-val">Drums: 4:1 to 8:1</p>
+          <p class="knob-desc">How hard it compresses. Start at 4:1 for drums. Higher ratio = more squashed. Infinity:1 = a brick wall limiter.</p>
+        </div>
+        <div class="knob-item">
+          <p class="knob-name">Attack <span class="tt" data-tip="How fast the compressor reacts after a signal crosses the threshold. Fast attack = clamps down immediately (can kill transients). Slow attack = lets the initial hit through BEFORE clamping. Critical for preserving punch.">?</span></p>
+          <p class="knob-val">Drums: 10–40 ms</p>
+          <p class="knob-desc"><strong>Slow attack = punchier</strong>. The initial <span class="tt" data-tip="The very first spike of a sound before it settles into its sustained body. The crack of a snare, the click of a kick. Transients define punch and presence in a mix.">transient ?</span> gets through before compression kicks in. Fast attack smooths everything out but can sound flat.</p>
+        </div>
+        <div class="knob-item">
+          <p class="knob-name">Release <span class="tt" data-tip="How fast the compressor stops reducing gain after the signal drops below the threshold. Too fast causes pumping — an audible breathing artifact. Too slow = the compressor never fully releases and slowly kills all dynamics.">?</span></p>
+          <p class="knob-val">Start: 100–200 ms</p>
+          <p class="knob-desc">How fast it lets go. Too fast = <span class="tt" data-tip="An audible 'breathing' artifact where the compressor rapidly opening and closing creates rhythmic volume pulsation. Usually unwanted unless you're deliberately going for a dramatic pumping effect.">pumping ?</span>. Too slow = kills energy over time. Listen carefully and adjust by ear.</p>
+        </div>
+        <div class="knob-item">
+          <p class="knob-name">Makeup Gain <span class="tt" data-tip="After compression reduces your signal, it becomes quieter. Makeup gain brings it back up to the same perceived loudness. Without matching levels you can't fairly judge whether the compression is actually helping.">?</span></p>
+          <p class="knob-val">Match uncompressed level</p>
+          <p class="knob-desc">After compression the signal is quieter. Bring it back up to the same volume, then bypass to A/B. <strong>If compressed sounds better at equal volume, you got it right.</strong></p>
+        </div>
+        <div class="knob-item">
+          <p class="knob-name">Knee <span class="tt" data-tip="Hard knee: compression snaps on instantly at the threshold. Soft knee: compression gradually increases as the signal approaches and crosses the threshold. Soft is more transparent and musical; hard is snappier and more aggressive.">?</span></p>
+          <p class="knob-val">Soft for jazz, hard for metal</p>
+          <p class="knob-desc">Hard knee = compression snaps on suddenly. Soft knee = gradual and more transparent. Jazz: soft. Metal and rock: hard or medium.</p>
+        </div>
+      </div>
+
+      <div class="comp-settings">
+        <h3>Recommended Settings Per Piece</h3>
+        <div class="settings-grid">
+          <div class="setting-card">
+            <p class="setting-label kick-icon-sm">KICK</p>
+            <div class="setting-row"><span>Ratio</span><span>4:1 – 6:1</span></div>
+            <div class="setting-row"><span>Threshold</span><span>−12 to −18 dB</span></div>
+            <div class="setting-row"><span>Attack</span><span>20–40 ms (slow — punch)</span></div>
+            <div class="setting-row"><span>Release</span><span>80–150 ms</span></div>
+            <p class="setting-note">Let the beater click through. Goal: even and powerful, never strangled.</p>
+          </div>
+          <div class="setting-card">
+            <p class="setting-label snare-icon-sm">SNARE</p>
+            <div class="setting-row"><span>Ratio</span><span>4:1 – 8:1</span></div>
+            <div class="setting-row"><span>Threshold</span><span>−10 to −16 dB</span></div>
+            <div class="setting-row"><span>Attack</span><span>5–20 ms</span></div>
+            <div class="setting-row"><span>Release</span><span>60–120 ms</span></div>
+            <p class="setting-note">Use parallel compression to lift ghost notes without killing loud hits.</p>
+          </div>
+          <div class="setting-card">
+            <p class="setting-label oh-icon-sm">OVERHEADS</p>
+            <div class="setting-row"><span>Ratio</span><span>2:1 – 3:1</span></div>
+            <div class="setting-row"><span>Threshold</span><span>−8 to −14 dB</span></div>
+            <div class="setting-row"><span>Attack</span><span>30–60 ms</span></div>
+            <div class="setting-row"><span>Release</span><span>200 ms+</span></div>
+            <p class="setting-note">Just kiss the signal. Soft knee. More glue than control.</p>
+          </div>
+          <div class="setting-card">
+            <p class="setting-label bus-icon-sm">DRUM BUS</p>
+            <div class="setting-row"><span>Ratio</span><span>2:1 – 3:1</span></div>
+            <div class="setting-row"><span>Threshold</span><span>−6 to −8 dB</span></div>
+            <div class="setting-row"><span>Attack</span><span>30–50 ms</span></div>
+            <div class="setting-row"><span>Release</span><span>100–250 ms</span></div>
+            <p class="setting-note">Glues all drums together. Should feel like one kit, not separate pieces.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-block">
+        <span class="tip-icon" aria-hidden="true">⚡</span>
+        <div>
+          <strong>Parallel Compression</strong> (New York style): Duplicate the drum bus. Compress the duplicate very heavily (ratio 10:1+, threshold very low). Blend it back quietly underneath the main signal. Quiet hits like ghost notes get lifted into the mix without losing the snap of loud hits. Essential for jazz-influenced drumming in dense mixes.
+        </div>
+      </div>
+    </section>
+
+    <!-- WORKFLOW ─────────────────────────────────────────────────────────────── -->
+    <section class="section" aria-labelledby="drums-workflow-heading">
+      <div class="section-header">
+        <h2 id="drums-workflow-heading">Mixing Workflow</h2>
+        <span class="section-pill">Do this in order</span>
+      </div>
+      <ol class="workflow" role="list">
+        <li class="wf-step"><span class="wf-num">01</span><div class="wf-content"><strong>Gain staging</strong> — Set all tracks to hit around −18 to −12 dBFS before any processing. Prevents clipping and makes compressors behave predictably.</div></li>
+        <li class="wf-step"><span class="wf-num">02</span><div class="wf-content"><strong>High-pass everything except kick</strong> — Cut below 80–100 Hz on snare, toms, hats, overheads. Instantly clears your low end.</div></li>
+        <li class="wf-step"><span class="wf-num">03</span><div class="wf-content"><strong>Fix problems with EQ</strong> — Boost a narrow band, sweep to find the ugly frequency, then cut. Fix mud, boxiness and harshness per piece.</div></li>
+        <li class="wf-step"><span class="wf-num">04</span><div class="wf-content"><strong>Compress kick and snare</strong> — Get them punchy and even individually before touching overheads or toms.</div></li>
+        <li class="wf-step"><span class="wf-num">05</span><div class="wf-content"><strong>Bus compression</strong> — Route all drums to one bus, add light glue compression. This is what makes a kit sound like a kit.</div></li>
+        <li class="wf-step"><span class="wf-num">06</span><div class="wf-content"><strong>Mix in context</strong> — Always mix with the full band playing. What sounds good in solo often disappears or clashes in context.</div></li>
+      </ol>
+    </section>
+
+  </div><!-- /content -->
+</article>
+
+
+<!-- ─────────────────────────────────────────────────────────── GUITAR PAGE ── -->
+<article class="page" id="page-guitar" aria-label="Electric guitar mixing">
+
+  <header class="page-hero">
+    <p class="hero-tag">Cheatsheet 02</p>
+    <h1 class="hero-title">Electric Guitar</h1>
+    <p class="hero-sub">EQ and compression for clean, crunch, heavy and ambient tones.</p>
+  </header>
+
+  <div class="content">
+
+    <div class="filter-bar" role="group" aria-label="Genre filter">
+      <span class="filter-label">Style:</span>
+      <button class="filter-btn active" onclick="setGenre('all',this)">All</button>
+      <button class="filter-btn" onclick="setGenre('metal',this)">Metal</button>
+      <button class="filter-btn" onclick="setGenre('jazz',this)">Jazz / Clean</button>
+      <button class="filter-btn" onclick="setGenre('rock',this)">Rock</button>
+    </div>
+
+    <section class="section" aria-labelledby="guitar-eq-heading">
+      <div class="section-header">
+        <h2 id="guitar-eq-heading">EQ — Guitar Frequencies</h2>
+        <span class="section-pill">Context matters most</span>
+      </div>
+      <p class="section-intro">Guitar EQ is heavily style-dependent. A jazz clean tone needs warmth preserved; a metal tone needs its mud scooped. Guitar fundamentals sit between 80 Hz–1.2 kHz, with harmonics and presence extending to 6 kHz.</p>
+
+      <!-- ALL GUITARS -->
+      <div class="drum-block">
+        <div class="drum-header">
+          <div class="drum-icon guitar-icon" aria-hidden="true">ALL</div>
+          <div><h3>All Guitars — Foundation Rules</h3><p class="drum-role">Applies before any style-specific shaping</p></div>
+        </div>
+        <div class="freq-grid">
+          <div class="freq-card cut">
+            <p class="freq-hz">&lt; 80 Hz</p>
+            <p class="freq-action">HIGH-PASS — always</p>
+            <p class="freq-desc">Guitars produce no useful sub information. This range is amp hum, pick noise and bass bleed. Cut it and your bass guitar immediately sounds cleaner.</p>
+          </div>
+          <div class="freq-card cut">
+            <p class="freq-hz">200–400 Hz</p>
+            <p class="freq-action">CUT — mud</p>
+            <p class="freq-desc">The <span class="tt" data-tip="A murky, indistinct buildup that obscures definition. Makes guitars sound like they're underwater. Nearly always needs cutting, especially with high gain. This is the most important cut in guitar EQ.">mud zone ?</span>. Guitars stacked with drums here turn into indistinguishable mush. Cut conservatively to clean up definition.</p>
+          </div>
+          <div class="freq-card watch">
+            <p class="freq-hz">300–500 Hz</p>
+            <p class="freq-action">WATCH — nasal/honk</p>
+            <p class="freq-desc">A <span class="tt" data-tip="A thin, nasal mid-range quality — like someone speaking through their nose. Common on mid-heavy amp settings and high gain tones. Usually needs a small cut.">honky ?</span> or nasal quality lives here. Often needs attention on high-gain tones.</p>
+          </div>
+          <div class="freq-card boost">
+            <p class="freq-hz">1.5–3 kHz</p>
+            <p class="freq-action">BOOST — presence</p>
+            <p class="freq-desc"><span class="tt" data-tip="The quality that lets a sound sit forward and be distinctly heard in a mix. Presence frequencies (1–5kHz) are where consonants and note attack live. Boosts here help guitars cut through without raising the volume.">Presence ?</span> and <span class="tt" data-tip="The ability to be heard distinctly in a busy mix. Definition = clarity of individual notes and chords. Lost when too much energy accumulates in the 200–400Hz mud zone.">definition ?</span>. Helps guitars cut through drums and vocals without turning up volume.</p>
+          </div>
+          <div class="freq-card cut">
+            <p class="freq-hz">4–6 kHz</p>
+            <p class="freq-action">WATCH — pick harshness</p>
+            <p class="freq-desc">Pick attack and string scrape lives here. On high gain, this can become very harsh on fast playing. Cut if ears hurt on bright picks or rapid riffs.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- HIGH GAIN / METAL -->
+      <div class="drum-block genre-metal">
+        <div class="drum-header">
+          <div class="drum-icon metal-icon" aria-hidden="true">HG</div>
+          <div><h3>High Gain / Metal</h3><p class="drum-role">Djent, death metal, prog metal, extreme genres</p></div>
+        </div>
+        <div class="freq-grid">
+          <div class="freq-card cut">
+            <p class="freq-hz">100–200 Hz</p>
+            <p class="freq-action">CUT — tighten low mids</p>
+            <p class="freq-desc">High gain distortion smears the low mids into a <span class="tt" data-tip="An indistinct, soft low-mid sound where distorted guitar loses all articulation. Like the guitar is wrapped in a thick blanket. Cutting 100–200Hz on high-gain dramatically tightens riffs.">woolly mess ?</span>. This is the single most important cut for metal — it makes riffs tight and articulate.</p>
+          </div>
+          <div class="freq-card boost">
+            <p class="freq-hz">80–100 Hz</p>
+            <p class="freq-action">BOOST — chunk</p>
+            <p class="freq-desc">Restore low-end <span class="tt" data-tip="The heavy, physical impact of a distorted power chord or palm mute — the 'djent' or 'chug' sensation. Lives below the mud zone. This is where metal rhythm guitars get their heaviness.">chunk ?</span> after tightening the low mids. Gives riffs physical heaviness without the mud. Keep it narrow.</p>
+          </div>
+          <div class="freq-card boost">
+            <p class="freq-hz">2–3 kHz</p>
+            <p class="freq-action">BOOST — bite</p>
+            <p class="freq-desc">High gain <span class="tt" data-tip="The aggressive, forward cutting quality of distorted guitar at 2–3kHz. Bite makes palm-muted riffs and chugs audible and defined even in a very busy mix. Often the difference between sounding metal or just sounding loud.">bite ?</span>. Makes palm mutes and fast riffs audible and defined even at extreme gain.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CLEAN / JAZZ -->
+      <div class="drum-block genre-jazz">
+        <div class="drum-header">
+          <div class="drum-icon clean-icon" aria-hidden="true">CL</div>
+          <div><h3>Clean / Jazz Guitar</h3><p class="drum-role">Warm, articulate, full-bodied tone</p></div>
+        </div>
+        <div class="freq-grid">
+          <div class="freq-card boost">
+            <p class="freq-hz">200–300 Hz</p>
+            <p class="freq-action">PRESERVE — warmth</p>
+            <p class="freq-desc"><span class="tt" data-tip="A pleasing fullness and roundness in the low-mids (200–400Hz). Associated with wood resonance, tube amplifiers, and vintage recordings. On clean tones, this is where the guitar body speaks.">Warmth ?</span> and body. On clean tones this is where the wood of the guitar resonates. Preserve it — don't cut unless absolutely necessary.</p>
+          </div>
+          <div class="freq-card boost">
+            <p class="freq-hz">1–2 kHz</p>
+            <p class="freq-action">BOOST — note clarity</p>
+            <p class="freq-desc">Individual note clarity for jazz voicings. Makes chord extensions, passing tones, and melodic lines intelligible rather than a wash of harmonic noise.</p>
+          </div>
+          <div class="freq-card cut">
+            <p class="freq-hz">4–6 kHz</p>
+            <p class="freq-action">CUT — pick sharpness</p>
+            <p class="freq-desc">Pick noise becomes unpleasant on clean tones. A small cut here smooths it without affecting the character of the note or string fundamental.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROCK -->
+      <div class="drum-block genre-rock">
+        <div class="drum-header">
+          <div class="drum-icon rock-icon" aria-hidden="true">CR</div>
+          <div><h3>Crunch / Rock Guitar</h3><p class="drum-role">Classic rock, hard rock, moderate gain</p></div>
+        </div>
+        <div class="freq-grid">
+          <div class="freq-card boost">
+            <p class="freq-hz">100–200 Hz</p>
+            <p class="freq-action">BOOST — thickness</p>
+            <p class="freq-desc">Rock guitars need body without going full metal. Preserve more low mids than high gain but less than jazz clean. The sweet spot for crunch.</p>
+          </div>
+          <div class="freq-card cut">
+            <p class="freq-hz">400–600 Hz</p>
+            <p class="freq-action">CUT — boxy</p>
+            <p class="freq-desc">The zone that makes crunch guitars sound boxy and cheap. A small cut reveals the harmonic content above it and lets the tone breathe.</p>
+          </div>
+          <div class="freq-card boost">
+            <p class="freq-hz">2–4 kHz</p>
+            <p class="freq-action">BOOST — edge</p>
+            <p class="freq-desc">The cutting edge of a rock guitar. Makes chord rhythms and solos slice through drums and bass without going harsh or fatiguing.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="guitar-comp-heading">
+      <div class="section-header">
+        <h2 id="guitar-comp-heading">Compression</h2>
+        <span class="section-pill">For guitar</span>
+      </div>
+      <p class="section-intro">Guitar compression is more subtle than drums. The goal is usually <span class="tt" data-tip="Consistency of volume level across a performance. Sustained notes, plucked notes and strummed chords all hitting at similar perceived levels. Compression evening out these differences makes guitar sit better in a mix.">sustain and evenness ?</span>. Exception: metal usually needs no compression on guitars because distortion already compresses heavily.</p>
+
+      <div class="knob-explainer">
+        <div class="knob-item">
+          <p class="knob-name">Clean / Jazz Guitar</p>
+          <p class="knob-val">Ratio 2:1–4:1, gentle</p>
+          <p class="knob-desc">Slow attack preserves pick attack. Medium release matching note length. Goal: even volume across positions. Adds <span class="tt" data-tip="How long a guitar note continues ringing after the initial attack. Compression increases sustain by reducing how quickly a note decays — the compressor keeps boosting as the note fades.">sustain ?</span> and consistency.</p>
+        </div>
+        <div class="knob-item">
+          <p class="knob-name">Rock Guitar</p>
+          <p class="knob-val">Ratio 3:1–6:1, medium</p>
+          <p class="knob-desc">Moderate compression helps rhythm guitars sit consistently. Watch attack — too fast kills the pick attack that gives rock rhythm its drive and character.</p>
+        </div>
+        <div class="knob-item">
+          <p class="knob-name">Metal Guitar</p>
+          <p class="knob-val">Usually skip it</p>
+          <p class="knob-desc">High gain distortion is itself a compressor. Adding another on top usually kills dynamics and adds noise floor. Focus on amp tone and EQ instead.</p>
+        </div>
+      </div>
+
+      <div class="tip-block">
+        <span class="tip-icon" aria-hidden="true">⚡</span>
+        <div><strong>Stereo widening:</strong> For rhythm guitars in metal or rock, record the same part twice and pan hard left and right. This creates natural width without phase issues and gives guitars room to breathe in a dense mix without EQ tricks.</div>
+      </div>
+    </section>
+
+  </div>
+</article>
+
+
+<!-- ───────────────────────────────────────────────────────────── BASS PAGE ── -->
+<article class="page" id="page-bass" aria-label="Bass guitar mixing">
+
+  <header class="page-hero">
+    <p class="hero-tag">Cheatsheet 03</p>
+    <h1 class="hero-title">Bass Guitar</h1>
+    <p class="hero-sub">The low-end glue between kick drum and harmony.</p>
+  </header>
+
+  <div class="content">
+    <section class="section" aria-labelledby="bass-eq-heading">
+      <div class="section-header">
+        <h2 id="bass-eq-heading">EQ — Bass Frequencies</h2>
+        <span class="section-pill">Low-end management</span>
+      </div>
+      <p class="section-intro">Bass and kick drum share the most critical sonic real estate. Your job is to carve out distinct frequency homes for each so they co-exist without competing. In a mix, only one instrument should dominate below 80 Hz at any moment.</p>
+
+      <div class="drum-block">
+        <div class="drum-header">
+          <div class="drum-icon bass-icon" aria-hidden="true">B</div>
+          <div><h3>Bass Guitar — Full Frequency Map</h3><p class="drum-role">Fundamental: 40–200 Hz. Harmonics: 200 Hz–2 kHz</p></div>
+        </div>
+        <div class="freq-grid">
+          <div class="freq-card cut"><p class="freq-hz">&lt; 30 Hz</p><p class="freq-action">HIGH-PASS</p><p class="freq-desc">Subsonic rumble. Inaudible but wastes amplifier headroom and causes excessive speaker movement. Always cut it.</p></div>
+          <div class="freq-card boost"><p class="freq-hz">50–80 Hz</p><p class="freq-action">BOOST — sub fundamentals</p><p class="freq-desc">The <span class="tt" data-tip="The lowest frequency component of a note — the pure pitch itself before any harmonics. For bass guitar, this is where the actual note 'lives' and where you feel it on large systems and headphones.">fundamental ?</span> of bass notes. The deep <span class="tt" data-tip="The physical sensation of low frequency energy you feel in your chest or feet rather than hear. Critical for bass to feel present on large PA systems and subwoofers.">sub thump ?</span>. Present here = bass feels powerful. Too much = <span class="tt" data-tip="When bass frequencies build up excessively, making a mix sound thick and indistinct in the low end. Common cause: too much content below 200Hz across multiple instruments simultaneously.">low-end buildup ?</span>.</p></div>
+          <div class="freq-card watch"><p class="freq-hz">80–120 Hz</p><p class="freq-action">WATCH — kick crossover</p><p class="freq-desc">Where kick and bass compete hardest. Common technique: if the kick owns 60–80 Hz, let the bass live at 100–120 Hz. They share the space by occupying slightly different zones.</p></div>
+          <div class="freq-card boost"><p class="freq-hz">150–250 Hz</p><p class="freq-action">BOOST — warmth/body</p><p class="freq-desc">Bass body and warmth. Too much = <span class="tt" data-tip="An undefined, blurry low-mid buildup. Makes a mix sound like it's inside a cardboard box. Usually caused by too much 150–250Hz across bass and guitars simultaneously.">boomy ?</span>. Too little = thin and weak. This range gives bass its sense of physical weight and fullness.</p></div>
+          <div class="freq-card cut"><p class="freq-hz">200–400 Hz</p><p class="freq-action">CUT — mud</p><p class="freq-desc">Bass mud. This overlaps directly with guitar mud. If your mix sounds thick and unclear, both instruments probably need cuts here. Be assertive.</p></div>
+          <div class="freq-card boost"><p class="freq-hz">700 Hz – 1 kHz</p><p class="freq-action">BOOST — note definition</p><p class="freq-desc">Individual note definition. Boosting here makes it easier to hear what notes the bassist is playing — essential for complex jazz lines or progressive metal riffs.</p></div>
+          <div class="freq-card boost"><p class="freq-hz">2–3 kHz</p><p class="freq-action">BOOST — pick/finger attack</p><p class="freq-desc">The <span class="tt" data-tip="The percussive click of a pick striking the string, or the thump of a finger plucking. Without this frequency, bass becomes inaudible on earbuds, laptop speakers and phone speakers — where most listeners hear music.">attack transient ?</span>. Pick attack or finger pluck. Critical on small speakers where low end doesn't translate. Boost = bass audible everywhere.</p></div>
+          <div class="freq-card cut"><p class="freq-hz">3–6 kHz</p><p class="freq-action">CUT — fret noise</p><p class="freq-desc"><span class="tt" data-tip="Squeaks, buzzes and mechanical noises from fingers sliding on strings or frets buzzing against the neck. Distracting and unprofessional in a mix. More common on roundwound strings with aggressive players.">String noise and fret buzz ?</span>. Common on roundwound strings with aggressive players. Cut to clean up without affecting tone.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="bass-comp-heading">
+      <div class="section-header">
+        <h2 id="bass-comp-heading">Compression</h2>
+        <span class="section-pill">Essential for bass</span>
+      </div>
+      <p class="section-intro">Bass benefits more from compression than almost any other instrument. Live bass dynamics can swing 20–30 dB. A compressor brings this under control so the bass sits at a consistent level rather than disappearing on soft notes and overwhelming on hard ones.</p>
+
+      <div class="knob-explainer">
+        <div class="knob-item"><p class="knob-name">Ratio</p><p class="knob-val">4:1 – 8:1</p><p class="knob-desc">Higher ratio than guitar — more control needed. Aim for 6–8 dB of gain reduction on the loudest passages.</p></div>
+        <div class="knob-item"><p class="knob-name">Attack</p><p class="knob-val">20–50 ms</p><p class="knob-desc">Slower than you might think. Let the transient through to preserve the pluck or pick attack, then compress the body. Too fast = dead, rubbery sound with no life.</p></div>
+        <div class="knob-item"><p class="knob-name">Release</p><p class="knob-val">Auto or 80–150 ms</p><p class="knob-desc">Should roughly match the tempo. Many engineers use "auto" release on bass — it adapts to note length automatically. Check that it fully releases between notes.</p></div>
+      </div>
+
+      <div class="tip-block">
+        <span class="tip-icon" aria-hidden="true">⚡</span>
+        <div><strong>Parallel compression on bass:</strong> Compress a duplicate heavily (ratio 10:1, very low threshold), blend it about 30–40% under the dry signal. Adds density and sustain without killing the natural feel of the finger or pick attack.</div>
+      </div>
+      <div class="tip-block">
+        <span class="tip-icon" aria-hidden="true">🎸</span>
+        <div><strong>Sidechain kick to bass:</strong> Route the kick drum as a sidechain trigger to a compressor on the bass. Every kick hit momentarily ducks the bass. Result: kick and bass lock together rhythmically and never fight for the same space. A production staple in metal and rock.</div>
+      </div>
+    </section>
+  </div>
+</article>
+
+
+<!-- ──────────────────────────────────────────────────────────── VOCALS PAGE ── -->
+<article class="page" id="page-vocals" aria-label="Vocal mixing">
+
+  <header class="page-hero">
+    <p class="hero-tag">Cheatsheet 04</p>
+    <h1 class="hero-title">Vocals</h1>
+    <p class="hero-sub">Clean, screams, fry screams, growls — processed correctly.</p>
+  </header>
+
+  <div class="content">
+    <div class="filter-bar" role="group" aria-label="Vocal type filter">
+      <span class="filter-label">Vocal type:</span>
+      <button class="filter-btn active" onclick="setGenre('all',this)">All</button>
+      <button class="filter-btn" onclick="setGenre('metal',this)">Extreme vocals</button>
+      <button class="filter-btn" onclick="setGenre('jazz',this)">Clean / Jazz</button>
+      <button class="filter-btn" onclick="setGenre('rock',this)">Rock</button>
+    </div>
+
+    <section class="section" aria-labelledby="vocals-eq-heading">
+      <div class="section-header">
+        <h2 id="vocals-eq-heading">EQ — Vocal Frequencies</h2>
+        <span class="section-pill">Most critical instrument</span>
+      </div>
+      <p class="section-intro">Vocals are the focal point of nearly every mix. Listeners connect with the human voice first. Every other instrument should serve the vocal. The human voice spans roughly 80 Hz–16 kHz, with the most important content between 300 Hz–8 kHz.</p>
+
+      <!-- CLEAN VOCALS -->
+      <div class="drum-block">
+        <div class="drum-header">
+          <div class="drum-icon vocal-icon" aria-hidden="true">VC</div>
+          <div><h3>Clean Vocals — All Genres</h3><p class="drum-role">Applies before any style-specific processing</p></div>
+        </div>
+        <div class="freq-grid">
+          <div class="freq-card cut"><p class="freq-hz">&lt; 80–120 Hz</p><p class="freq-action">HIGH-PASS</p><p class="freq-desc">Rumble, room noise, and <span class="tt" data-tip="When a directional microphone is placed very close to a source, low frequencies are over-emphasized — creating an artificially boomy low end. Named after the directionality ('proximity') of the effect. More pronounced on dynamic and condenser mics.">proximity effect ?</span> from close-miking all live here. Always high-pass vocals before any other processing.</p></div>
+          <div class="freq-card cut"><p class="freq-hz">200–400 Hz</p><p class="freq-action">CUT — mud/boxiness</p><p class="freq-desc">Vocal mud and the <span class="tt" data-tip="The boxy, hollow quality of a voice recorded in a small untreated room. Sounds like someone singing inside a wooden box. A narrow cut in 300–500Hz removes it without thinning the voice.">room sound ?</span>. Cutting here adds clarity without reducing the fullness or body of the voice.</p></div>
+          <div class="freq-card boost"><p class="freq-hz">1–3 kHz</p><p class="freq-action">BOOST — presence</p><p class="freq-desc"><span class="tt" data-tip="How clearly lyrics can be understood. Presence frequencies (1–5kHz) are where consonants like S, T, K, P live. A boost here makes lyrics clearer without changing the overall volume.">Intelligibility ?</span> and forward <span class="tt" data-tip="The quality of a voice or instrument feeling close and immediate — as if it's right in front of the listener. Presence boosts push vocals out of speakers toward the listener.">presence ?</span>. This is where words are understood. A small boost here makes lyrics clearer without volume changes.</p></div>
+          <div class="freq-card watch"><p class="freq-hz">2–4 kHz</p><p class="freq-action">WATCH — harshness</p><p class="freq-desc">The <span class="tt" data-tip="A harsh, uncomfortable mid-range peak that causes ear fatigue on prolonged listening. Often a room reflection frequency or mic resonance. A small narrow cut here can be very relieving.">harsh zone ?</span>. Boosting presence can create harshness here. A narrow cut fixes it if vowels sound shouty or uncomfortable.</p></div>
+          <div class="freq-card boost"><p class="freq-hz">8–12 kHz</p><p class="freq-action">BOOST — air/shine</p><p class="freq-desc"><span class="tt" data-tip="Top-shelf openness above ~8kHz. Makes vocals sound expensive and well-recorded. Too much creates sibilance issues where S sounds become piercing and whistly.">Air ?</span> and vocal shine. A gentle high shelf makes vocals breathe and feel present. Watch for <span class="tt" data-tip="Excessive sibilance — S and SH sounds that become piercing and whistly. Caused by too much 5–10kHz energy. Controlled with a de-esser plugin placed after compression.">sibilance ?</span>.</p></div>
+        </div>
+      </div>
+
+      <!-- SCREAMS -->
+      <div class="drum-block genre-metal">
+        <div class="drum-header">
+          <div class="drum-icon scream-icon" aria-hidden="true">SC</div>
+          <div><h3>Screams / Harsh Vocals</h3><p class="drum-role">Metalcore, hardcore, post-hardcore</p></div>
+        </div>
+        <div class="freq-grid">
+          <div class="freq-card cut"><p class="freq-hz">&lt; 150 Hz</p><p class="freq-action">HIGH-PASS — aggressive</p><p class="freq-desc">Screaming generates a lot of low-end pressure that muddies everything. High-pass higher than clean vocals — up to 150 Hz — without hesitation.</p></div>
+          <div class="freq-card cut"><p class="freq-hz">400–800 Hz</p><p class="freq-action">CUT — honk</p><p class="freq-desc">Screamed vocals accumulate a harsh honky resonance here. Cutting makes the scream sound powerful rather than nasal and thin.</p></div>
+          <div class="freq-card boost"><p class="freq-hz">1.5–3 kHz</p><p class="freq-action">BOOST — aggression</p><p class="freq-desc">The attack and aggression of screams. This is what makes them feel threatening and cut through the wall of distorted guitars.</p></div>
+          <div class="freq-card cut"><p class="freq-hz">4–8 kHz</p><p class="freq-action">CUT — harsh air</p><p class="freq-desc">Screaming produces a lot of harsh high-mid content. Tame carefully — too much and the scream sounds muffled; too little and it's ear-damaging in the mix.</p></div>
+        </div>
+      </div>
+
+      <!-- GROWLS -->
+      <div class="drum-block genre-metal">
+        <div class="drum-header">
+          <div class="drum-icon growl-icon" aria-hidden="true">GR</div>
+          <div><h3>Fry Screams &amp; Growls</h3><p class="drum-role">Death metal, deathcore, black metal, extreme styles</p></div>
+        </div>
+        <div class="freq-grid">
+          <div class="freq-card boost"><p class="freq-hz">60–120 Hz</p><p class="freq-action">BOOST — sub depth</p><p class="freq-desc"><span class="tt" data-tip="The chest-resonating low frequency content of a deep death metal growl. What makes a vocal feel physically massive and monstrous. Almost entirely absent in screams — it's what distinguishes a growl from a scream.">Growl sub-depth ?</span>. Deep growls have chest resonance here. Boosting gives them a physical, monstrous quality that sits under the guitars.</p></div>
+          <div class="freq-card cut"><p class="freq-hz">300–600 Hz</p><p class="freq-action">CUT — nasal mud</p><p class="freq-desc">Growls accumulate a nasal mid-heavy quality in this zone. Cutting makes them sit deeper, darker and more guttural rather than thin and honky.</p></div>
+          <div class="freq-card boost"><p class="freq-hz">1–2 kHz</p><p class="freq-action">BOOST — definition</p><p class="freq-desc">Word definition in extreme vocals. Without this boost, lyrics are completely indecipherable. Boost carefully for presence without losing the low-end character.</p></div>
+          <div class="freq-card cut"><p class="freq-hz">5–8 kHz</p><p class="freq-action">CUT — fry harshness</p><p class="freq-desc"><span class="tt" data-tip="A vocal technique using the lowest register of the voice (fry/vocal fry register) to create a crackling, gravelly texture by causing irregular vocal fold vibration. Used in death metal and extreme styles. Produces a lot of high-mid harmonic content.">Fry scream ?</span> produces harsh upper harmonics here. Cut significantly — these frequencies fight everything else in a dense mix.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="vocals-comp-heading">
+      <div class="section-header">
+        <h2 id="vocals-comp-heading">Compression</h2>
+        <span class="section-pill">Vocals need a lot</span>
+      </div>
+      <p class="section-intro">Vocalists are the most dynamically inconsistent instrument. A single phrase can swing 15–20 dB from whisper to belt. You need multiple stages of compression to tame this.</p>
+
+      <div class="knob-explainer">
+        <div class="knob-item"><p class="knob-name">Clean Vocals</p><p class="knob-val">Ratio 3:1–6:1</p><p class="knob-desc">Attack 5–15 ms. Release 50–100 ms. Often stack two compressors: a gentle first stage (2:1) catches peaks, a firmer second stage (4:1) controls consistency. Preserve emotional dynamics.</p></div>
+        <div class="knob-item"><p class="knob-name">Screams</p><p class="knob-val">Ratio 6:1–10:1</p><p class="knob-desc">Screams have enormous peaks. Compress harder than clean vocals. Fast attack (5 ms), medium release (80 ms). Follow with a limiter to catch any rogue peaks that get through.</p></div>
+        <div class="knob-item"><p class="knob-name">Growls</p><p class="knob-val">Ratio 4:1–8:1</p><p class="knob-desc">Similar to screams but watch the attack — let some of the initial chest hit through before compressing. A 15 ms attack preserves the physical impact of the growl.</p></div>
+      </div>
+
+      <div class="tip-block">
+        <span class="tip-icon" aria-hidden="true">⚡</span>
+        <div><strong>De-essing:</strong> A <span class="tt" data-tip="A frequency-specific compressor that only activates on sibilant frequencies (5–10kHz). Reduces harsh S, SH and T sounds without affecting the rest of the vocal. Essential on clean vocals, especially after compression.">de-esser ?</span> is essential on clean vocals. Place it <em>after</em> compression. Target 5–8 kHz. Sibilance always becomes more pronounced after compression, so always de-ess after, never before.</div>
+      </div>
+      <div class="tip-block">
+        <span class="tip-icon" aria-hidden="true">🎤</span>
+        <div><strong>Reverb and delay:</strong> Short room reverb (100–250 ms, low mix %) thickens vocals in the mix. A quarter-note delay at 20–30% creates depth and width. For metal vocals: keep reverb very subtle or skip it entirely — too much sounds like the singer is in a church.</div>
+      </div>
+    </section>
+  </div>
+</article>
+
+
+<!-- ──────────────────────────────────────────────────────── MASTERING PAGE ── -->
+<article class="page" id="page-mastering" aria-label="Mastering">
+
+  <header class="page-hero">
+    <p class="hero-tag">Cheatsheet 05</p>
+    <h1 class="hero-title">Mastering</h1>
+    <p class="hero-sub">The final step. Make it loud, consistent, and ready for the world.</p>
+  </header>
+
+  <div class="content">
+
+    <div class="tip-block" style="margin-bottom:24px">
+      <span class="tip-icon" aria-hidden="true">📖</span>
+      <div><strong>What is mastering?</strong> Mastering is the final processing stage applied to your finished stereo mix bounce. You are no longer touching individual instruments — you're shaping the entire song as one object. Goals: consistent loudness across an album, translate well on every playback system (phone speakers, club PAs, earbuds, car stereos), and deliver at the correct loudness level for streaming platforms.</div>
+    </div>
+
+    <section class="section" aria-labelledby="master-eq-heading">
+      <div class="section-header">
+        <h2 id="master-eq-heading">EQ for Mastering</h2>
+        <span class="section-pill">Gentle overall shaping</span>
+      </div>
+      <p class="section-intro">Mastering EQ should be subtle. If you need more than 3–4 dB of any boost or cut here, the mix has a problem that should be fixed at mix stage — not masked in mastering. Think of it as fine-tuning, not surgery.</p>
+
+      <div class="knob-explainer">
+        <div class="knob-item"><p class="knob-name">Sub cleaning<br><small>&lt; 30 Hz</small></p><p class="knob-val">High-pass: always</p><p class="knob-desc">Even a well-mixed track has subsonic content from room noise or headphone bleed. A steep high-pass at 20–30 Hz protects <span class="tt" data-tip="The physical back-and-forth movement of a speaker cone. Excessive low frequency energy pushes woofers past their mechanical limit, causing distortion or physical damage.">woofer excursion ?</span> and reclaims loudness headroom.</p></div>
+        <div class="knob-item"><p class="knob-name">Low-end balance<br><small>60–120 Hz</small></p><p class="knob-val">±2 dB max</p><p class="knob-desc">If kick and bass feel light on your reference monitors, a gentle shelf boost helps. If it sounds boomy on cheaper speakers, cut. Check on at least 3 different playback systems before adjusting.</p></div>
+        <div class="knob-item"><p class="knob-name">Mud control<br><small>200–400 Hz</small></p><p class="knob-val">Cut 1–3 dB</p><p class="knob-desc">Most mixes have some accumulation here. A wide, gentle cut (Q of 1.0–1.5) in this range adds clarity to the full mix without obviously changing its tone. The most common mastering EQ move.</p></div>
+        <div class="knob-item"><p class="knob-name">Presence<br><small>2–5 kHz</small></p><p class="knob-val">±1.5 dB max</p><p class="knob-desc">If the mix sounds recessed or distant, a tiny boost helps it speak forward. If harsh, cut. Use a wide bell (Q 0.5–1.0). Even 0.5 dB is significant at this stage.</p></div>
+        <div class="knob-item"><p class="knob-name">High shelf — air<br><small>10 kHz+</small></p><p class="knob-val">+1 to +2 dB</p><p class="knob-desc">A gentle high shelf adds openness and makes a mix feel <span class="tt" data-tip="The sense of open space and three-dimensionality above the music. Makes a mix sound expensive, well-recorded and immersive. Subtle boost only — too much sounds brittle and harsh.">airy ?</span>. Only add if it genuinely improves the sound — on harsh mixes this boost is painful.</p></div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="master-comp-heading">
+      <div class="section-header">
+        <h2 id="master-comp-heading">Compression for Mastering</h2>
+        <span class="section-pill">Glue, not control</span>
+      </div>
+      <p class="section-intro">Mastering compression is used for <span class="tt" data-tip="The perceptual quality of a mix sounding cohesive — like all elements belong together in the same space and were recorded at the same time. Glue compression subtly reduces dynamic range of the full mix.">glue ?</span> and <span class="tt" data-tip="The sense that a mix has consistent energy throughout. No section dramatically louder or quieter than another. Density makes a mix feel full and controlled from start to finish.">density ?</span>, not loudness. The settings are extremely gentle compared to mix compression.</p>
+
+      <div class="knob-explainer">
+        <div class="knob-item"><p class="knob-name">Ratio</p><p class="knob-val">1.5:1 – 2.5:1</p><p class="knob-desc">Extremely gentle. At this stage you are barely touching the signal. 2:1 is considered aggressive for mastering. Above 3:1 and you're mixing, not mastering.</p></div>
+        <div class="knob-item"><p class="knob-name">Threshold</p><p class="knob-val">−6 to −12 dB</p><p class="knob-desc">Set to get 1–3 dB of <span class="tt" data-tip="The amount by which the compressor is reducing the signal, measured in dB. Shown on the GR meter. 2–3dB is typical for mastering compression. More than 6dB = overcompressing.">gain reduction ?</span> on the loudest parts. If you're seeing 6 dB+, you're overcompressing and will kill the life of the mix.</p></div>
+        <div class="knob-item"><p class="knob-name">Attack</p><p class="knob-val">30–100 ms (slow)</p><p class="knob-desc">Slow attack preserves transients. You never want to kill the punch of a kick or snare in mastering. Very slow attack = transparent glue that doesn't touch the impact.</p></div>
+        <div class="knob-item"><p class="knob-name">Release</p><p class="knob-val">Auto or 200–400 ms</p><p class="knob-desc">Slow release tracks the <span class="tt" data-tip="The overall energy level of a section of music, typically measured over 3–5 seconds. Mastering compressors with slow release react to the overall energy of the program rather than individual drum hits.">program dynamics ?</span>. Most mastering engineers use auto release. Listen for pumping on loud-to-quiet transitions.</p></div>
+      </div>
+      <div class="tip-block"><span class="tip-icon" aria-hidden="true">⚡</span><div><strong>Transparency test:</strong> A/B your mastering chain constantly. Your bypass should sound relatively similar to processed. If the difference is dramatic, you're overprocessing. The effect should feel like the mix has "settled" — not obviously changed.</div></div>
+    </section>
+
+    <section class="section" aria-labelledby="master-limit-heading">
+      <div class="section-header">
+        <h2 id="master-limit-heading">Limiting</h2>
+        <span class="section-pill">The loudness stage</span>
+      </div>
+      <p class="section-intro">A <span class="tt" data-tip="An extreme compressor (ratio 20:1 or higher, up to infinity:1). Sets an absolute ceiling that the signal physically cannot exceed. Used as the final plugin in mastering to achieve target loudness levels for streaming platforms.">limiter ?</span> is always the last plugin in your chain. It sets a <span class="tt" data-tip="The maximum output level. Set to −1.0dBFS for streaming platforms. This prevents inter-sample peaks — actual signal excursions that exceed 0dBFS during digital-to-analog conversion — from causing distortion.">true peak ceiling ?</span> and allows you to push overall loudness.</p>
+
+      <div class="knob-explainer">
+        <div class="knob-item"><p class="knob-name">Ceiling (True Peak)</p><p class="knob-val">−1.0 dBFS</p><p class="knob-desc">Set to −1.0 dBFS for all streaming platforms. Prevents <span class="tt" data-tip="Peaks that exceed 0dBFS when a digital signal is converted to analog or encoded to MP3/AAC. Can occur even if the waveform appears to show 0dBFS. A true peak limiter catches these before export.">inter-sample peaks ?</span> that cause distortion during MP3/AAC encoding. Both −1.0 and −0.1 dBFS are used professionally.</p></div>
+        <div class="knob-item"><p class="knob-name">Input gain / Loudness target</p><p class="knob-val">−14 LUFS (streaming)</p><p class="knob-desc">Streaming platforms <span class="tt" data-tip="Automatic volume matching applied by streaming platforms. Spotify and Apple Music normalize to −14 LUFS; YouTube to −13 LUFS. Turning in a louder master than the target doesn't make it sound louder to listeners — it just gets turned down.">normalize to −14 LUFS ?</span>. Push input gain until hitting target. Metal can push to −11 to −12 LUFS before quality suffers.</p></div>
+        <div class="knob-item"><p class="knob-name">Release</p><p class="knob-val">Auto or 50–100 ms</p><p class="knob-desc">Most modern limiters have excellent auto release. Manual: shorter = more loudness but risks pumping artifacts. Longer = more transparent but slightly less loudness.</p></div>
+        <div class="knob-item"><p class="knob-name">Lookahead</p><p class="knob-val">1–5 ms</p><p class="knob-desc">Allows the limiter to "see ahead" and react before the peak arrives. Reduces distortion artifacts. Most quality limiters have this — always enable it.</p></div>
+      </div>
+
+      <div class="tip-block"><span class="tip-icon" aria-hidden="true">⚠️</span><div><strong>The loudness war is over.</strong> Streaming platforms automatically turn down loud masters. Pushing to −7 LUFS doesn't make your track louder on Spotify — it just makes it more distorted and fatiguing. Aim for −10 to −14 LUFS with a clean ceiling. Dynamics are preserved and it still sounds punchy.</div></div>
+    </section>
+
+    <section class="section" aria-labelledby="master-tools-heading">
+      <div class="section-header">
+        <h2 id="master-tools-heading">Other Mastering Tools</h2>
+        <span class="section-pill">Beyond EQ and compression</span>
+      </div>
+
+      <div class="knob-explainer">
+        <div class="knob-item"><p class="knob-name">Stereo widening <span class="tt" data-tip="Mid/Side processing separates the stereo signal into the center (Mid = what's identical in both channels) and width (Side = what's different between channels). Allows independent EQ and compression of center vs. width.">M/S ?</span></p><p class="knob-val">Use with care</p><p class="knob-desc">M/S EQ lets you boost highs in the sides for width, or cut low end in the sides to tighten the bottom. Bass should always be <span class="tt" data-tip="Keeping bass frequencies only in the center of the stereo field. Bass in the sides causes phase cancellation on mono playback and wastes loudness headroom.">mono below 150 Hz ?</span>.</p></div>
+        <div class="knob-item"><p class="knob-name">Harmonic Saturation</p><p class="knob-val">Subtle only</p><p class="knob-desc">A tape or tube <span class="tt" data-tip="Adding harmonic distortion (pleasant overtones) by overdriving tube amplifier or tape machine circuits. Adds second and third harmonics that make digital recordings feel warmer and more analog in character.">saturation plugin ?</span> adds warmth and perceived density without increasing peak levels. You should hear the difference more on A/B than in solo.</p></div>
+        <div class="knob-item"><p class="knob-name">Loudness Meter</p><p class="knob-val">Essential</p><p class="knob-desc">A <span class="tt" data-tip="Loudness Units relative to Full Scale. The modern standard for measuring perceived loudness integrated over time. Unlike peak meters, LUFS reflects how humans actually perceive loudness. Youlean Loudness Meter is a free option.">LUFS meter ?</span> is mandatory. Youlean Loudness Meter and iZotope Insight are both excellent. Check integrated LUFS and true peak simultaneously.</p></div>
+        <div class="knob-item"><p class="knob-name">Reference Tracks</p><p class="knob-val">Critical habit</p><p class="knob-desc">Import 2–3 commercially released tracks in your genre. Match their LUFS level and compare frequency balance and dynamics. Your ears adapt and lie to you after hours of work — references keep you honest.</p></div>
+        <div class="knob-item"><p class="knob-name">Mono Check</p><p class="knob-val">Always before export</p><p class="knob-desc">Sum your master to mono. Check nothing important disappears or phase-cancels. Phone speakers, Bluetooth devices and club PAs often play mono. If stereo effects cause cancellation, elements vanish for half your listeners.</p></div>
+        <div class="knob-item"><p class="knob-name">Dithering</p><p class="knob-val">Final export only</p><p class="knob-desc"><span class="tt" data-tip="When converting from 24-bit to 16-bit (required for CD), quantization noise is introduced. Dithering adds a tiny amount of shaped noise that masks this distortion. Apply once, on the final export only — never stack dither on top of already-dithered audio.">Dither ?</span> when exporting to 16-bit for CD. Not needed for streaming exports at 24-bit/44.1 kHz. Apply once — never stack.</p></div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="master-chain-heading">
+      <div class="section-header">
+        <h2 id="master-chain-heading">Mastering Chain Order</h2>
+        <span class="section-pill">Signal flow</span>
+      </div>
+      <ol class="workflow" role="list">
+        <li class="wf-step"><span class="wf-num">01</span><div class="wf-content"><strong>EQ (corrective)</strong> — Fix problems: mud cuts, subsonic cleanup, frequency imbalances inherited from the mix.</div></li>
+        <li class="wf-step"><span class="wf-num">02</span><div class="wf-content"><strong>Compression (glue)</strong> — 1–3 dB of gain reduction, slow attack, gentle ratio. Makes the mix settle together into one cohesive object.</div></li>
+        <li class="wf-step"><span class="wf-num">03</span><div class="wf-content"><strong>EQ (creative/tonal)</strong> — Optional. Fine-tune tone after compression has settled dynamics. Air shelf boost, tiny presence nudge.</div></li>
+        <li class="wf-step"><span class="wf-num">04</span><div class="wf-content"><strong>Saturation</strong> — Optional. Add analog warmth and harmonic density before limiting.</div></li>
+        <li class="wf-step"><span class="wf-num">05</span><div class="wf-content"><strong>Stereo widening / M/S</strong> — Optional. Adjust stereo image if needed. Always check mono afterwards.</div></li>
+        <li class="wf-step"><span class="wf-num">06</span><div class="wf-content"><strong>Limiter</strong> — Always last. Set true peak ceiling to −1.0 dBFS, push to target LUFS. Listen carefully for distortion artifacts.</div></li>
+        <li class="wf-step"><span class="wf-num">07</span><div class="wf-content"><strong>Loudness meter</strong> — Verify integrated LUFS and true peak against target platform specs before exporting.</div></li>
+      </ol>
+    </section>
+
+  </div>
+</article>
+
+
+<!-- ──────────────────────────────────────────────────────────── GLOSSARY PAGE ── -->
+<article class="page" id="page-glossary" aria-label="Glossary">
+
+  <header class="page-hero">
+    <p class="hero-tag">Reference</p>
+    <h1 class="hero-title">Glossary</h1>
+    <p class="hero-sub">Every term, explained plainly.</p>
+  </header>
+
+  <div class="content">
+    <div class="glossary-search">
+      <label for="gloss-search" class="sr-only">Search glossary terms</label>
+      <input
+        type="search"
+        id="gloss-search"
+        class="glossary-search__input"
+        placeholder="Search terms, e.g. 'transient' or 'mud'…"
+        autocomplete="off"
+        spellcheck="false"
+      >
+    </div>
+    <div class="glossary-grid" id="glossary-grid" aria-live="polite">
+      <!-- Populated by glossary.js -->
+    </div>
+  </div>
+
+</article>
+
+</main><!-- /app -->
+
+
+<!-- ══════════════════════════════════════════════════════════════ FOOTER ══ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <p class="footer-left">
+      <span class="logo-mark" aria-hidden="true">▣</span>
+      MixRef — a cheatsheet for when your ears lie to you.
+    </p>
+    <a
+      href="https://ko-fi.com/yourusername"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="kofi-btn"
+      id="kofi-link"
+    >
+      <span class="kofi-icon" aria-hidden="true">☕</span>
+      <span>Support this project</span>
+    </a>
+  </div>
+</footer>
+
+<!-- Tooltip bubble — positioned by tooltip.js -->
+<div class="tooltip-bubble" id="tooltip" role="tooltip" aria-hidden="true"></div>
+
+<!-- Screenreader-only utility class -->
+<style>.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
+
+<!-- JS — ES modules, no bundler needed -->
+<script type="module" src="src/js/main.js"></script>
+
+</body>
+</html>

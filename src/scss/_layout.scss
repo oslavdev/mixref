@@ -1,0 +1,198 @@
+// ─── uses design tokens ──────────────────────────────────────────────────────
+@use 'tokens' as t;
+
+// ─── LAYOUT ───────────────────────────────────────────────────────────────────
+
+// Grain texture overlay
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.025;
+  // Inline SVG noise — no external dependency
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+// Main content wrapper
+#app {
+  max-width: t.$content-max;
+  margin: 0 auto;
+  padding: t.$nav-h t.$space-6 100px;
+  position: relative;
+  z-index: 1;
+
+  @media (max-width: t.$bp-sm) {
+    padding-inline: t.$space-4;
+  }
+}
+
+// ─── PAGE TRANSITIONS ──────────────────────────────────────────────────────────
+
+.page {
+  display: none;
+  animation: fade-up 0.3s ease both;
+
+  &.active { display: block; }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+// ─── PAGE HERO ────────────────────────────────────────────────────────────────
+
+.page-hero {
+  padding: t.$space-16 0 t.$space-12;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: t.$space-12;
+
+  @media (max-width: t.$bp-sm) {
+    padding: t.$space-10 0 t.$space-8;
+    margin-bottom: t.$space-8;
+  }
+}
+
+.hero-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--text3);
+  text-transform: uppercase;
+  margin-bottom: t.$space-4;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(40px, 6vw, 72px);
+  line-height: 1;
+  letter-spacing: -2px;
+  color: var(--text);
+  margin-bottom: t.$space-4;
+}
+
+.hero-sub {
+  font-size: 16px;
+  color: var(--text2);
+  max-width: 500px;
+}
+
+// ─── CONTENT SECTIONS ─────────────────────────────────────────────────────────
+
+.content {
+  // Intentionally unstyled — child sections handle spacing
+}
+
+.section {
+  margin-bottom: t.$space-16;
+}
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: t.$space-4;
+  margin-bottom: t.$space-4;
+
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: -0.5px;
+    color: var(--text);
+  }
+}
+
+.section-pill {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--text3);
+  text-transform: uppercase;
+}
+
+.section-intro {
+  font-size: 14px;
+  color: var(--text2);
+  max-width: 720px;
+  margin-bottom: t.$space-8;
+  line-height: 1.7;
+
+  strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+}
+
+// ─── WORKFLOW ─────────────────────────────────────────────────────────────────
+
+.workflow {
+  display: flex;
+  flex-direction: column;
+}
+
+.wf-step {
+  display: flex;
+  gap: t.$space-5;
+  padding: t.$space-5 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+
+  &:last-child { border-bottom: none; }
+}
+
+.wf-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text3);
+  letter-spacing: 1px;
+  flex-shrink: 0;
+  width: 28px;
+  padding-top: 2px;
+}
+
+.wf-content {
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.6;
+
+  strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+}
+
+// ─── TIP BLOCK ────────────────────────────────────────────────────────────────
+
+.tip-block {
+  display: flex;
+  gap: t.$space-4;
+  background: rgba(t.$color-accent, 0.04);
+  border: 1px solid rgba(t.$color-accent, 0.12);
+  border-radius: t.$r-lg;
+  padding: t.$space-4 + 2px;
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.7;
+
+  & + .tip-block { margin-top: t.$space-3; }
+
+  strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+}
+
+.tip-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  line-height: 1.4;
+}

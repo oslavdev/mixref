@@ -1,0 +1,51 @@
+// ─── DESIGN TOKENS ────────────────────────────────────────────────────────────
+// Single source of truth. All values consumed via CSS custom properties
+// so they're also available to runtime JS if needed.
+
+// Color ramp — raw values (used inside CSS custom property declarations only)
+$color-bg:        #0a0a0b;
+$color-bg2:       #111113;
+$color-bg3:       #18181b;
+$color-text:      #e8e8e8;
+$color-text2:     #888;
+$color-text3:     #555;
+$color-accent:    #e8ff47;
+$color-cut:       #ff5555;
+$color-boost:     #47ff8a;
+$color-watch:     #ffaa33;
+$color-kofi:      #ff6b4a;
+
+// Alpha helpers
+@function alpha($color, $a) { @return rgba($color, $a); }
+
+// Spacing scale (8px base)
+$space-1:  4px;
+$space-2:  8px;
+$space-3: 12px;
+$space-4: 16px;
+$space-5: 20px;
+$space-6: 24px;
+$space-8: 32px;
+$space-10: 40px;
+$space-12: 48px;
+$space-16: 64px;
+
+// Radii
+$r-sm:  6px;
+$r-md:  8px;
+$r-lg: 12px;
+$r-pill: 100px;
+
+// Typography
+$font-display: 'Syne', sans-serif;
+$font-body:    'DM Sans', sans-serif;
+$font-mono:    'DM Mono', monospace;
+
+// Layout
+$nav-h:       60px;
+$content-max: 1200px;
+
+// Breakpoints
+$bp-sm: 640px;
+$bp-md: 768px;
+$bp-lg: 1024px;

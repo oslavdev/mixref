@@ -1,0 +1,195 @@
+// ─── uses design tokens ──────────────────────────────────────────────────────
+@use 'tokens' as t;
+
+// ─── TOOLTIP ──────────────────────────────────────────────────────────────────
+
+// Inline trigger — the "?" marks in body text
+.tt {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text3);
+  cursor: help;
+  border-bottom: 1px dashed var(--text3);
+  white-space: nowrap;
+  transition: color 0.1s, border-color 0.1s;
+
+  &:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+}
+
+// Floating tooltip bubble (positioned by JS)
+.tooltip-bubble {
+  position: fixed;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: t.$r-md;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: var(--text2);
+  max-width: 280px;
+  line-height: 1.5;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+
+  &.show { opacity: 1; }
+}
+
+// ─── GENRE VISIBILITY FILTER ──────────────────────────────────────────────────
+// Blocks tagged with .genre-{x} fade when another genre is active on <body>
+
+.genre-metal,
+.genre-jazz,
+.genre-rock {
+  transition: opacity 0.2s, scale 0.2s;
+}
+
+body.genre-metal {
+  .genre-jazz,
+  .genre-rock {
+    opacity: 0.3;
+    scale: 0.99;
+  }
+}
+
+body.genre-jazz {
+  .genre-metal,
+  .genre-rock {
+    opacity: 0.3;
+    scale: 0.99;
+  }
+}
+
+body.genre-rock {
+  .genre-metal,
+  .genre-jazz {
+    opacity: 0.3;
+    scale: 0.99;
+  }
+}
+
+// ─── GLOSSARY ─────────────────────────────────────────────────────────────────
+
+.glossary-search {
+  margin-bottom: t.$space-8;
+}
+
+.glossary-search__input {
+  width: 100%;
+  max-width: 480px;
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: t.$r-md;
+  padding: 12px 16px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+
+  &:focus { border-color: var(--accent); }
+
+  &::placeholder { color: var(--text3); }
+}
+
+.glossary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: t.$space-3;
+}
+
+.gloss-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: t.$r-lg;
+  padding: t.$space-4 + 2px;
+  transition: border-color 0.2s;
+
+  &:hover { border-color: var(--border2); }
+}
+
+.gloss-term {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: t.$space-1 + 2px;
+}
+
+.gloss-cat {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text3);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: t.$space-2;
+}
+
+.gloss-def {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.6;
+}
+
+// ─── FOOTER ───────────────────────────────────────────────────────────────────
+
+.footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border);
+  padding: t.$space-6;
+}
+
+.footer-inner {
+  max-width: t.$content-max;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: t.$space-4;
+  flex-wrap: wrap;
+
+  @media (max-width: t.$bp-sm) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.footer-left {
+  font-size: 13px;
+  color: var(--text3);
+  display: flex;
+  align-items: center;
+  gap: t.$space-2;
+
+  .logo-mark {
+    font-size: 14px;
+    color: var(--accent);
+  }
+}
+
+.kofi-btn {
+  display: flex;
+  align-items: center;
+  gap: t.$space-2;
+  background: rgba(t.$color-kofi, 0.1);
+  border: 1px solid rgba(t.$color-kofi, 0.25);
+  color: t.$color-kofi;
+  padding: t.$space-2 t.$space-4 + 2px;
+  border-radius: t.$r-pill;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background-color 0.2s, border-color 0.2s, translate 0.2s;
+
+  &:hover {
+    background: rgba(t.$color-kofi, 0.18);
+    border-color: rgba(t.$color-kofi, 0.4);
+    translate: 0 -1px;
+  }
+}
+
+.kofi-icon { font-size: 15px; }

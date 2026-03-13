@@ -1,0 +1,129 @@
+// ─── uses design tokens ──────────────────────────────────────────────────────
+@use 'tokens' as t;
+
+// ─── NAVIGATION ───────────────────────────────────────────────────────────────
+
+.nav {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  height: t.$nav-h;
+  background: rgba(t.$color-bg, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+}
+
+.nav-inner {
+  max-width: t.$content-max;
+  margin: 0 auto;
+  padding-inline: t.$space-6;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: t.$space-8;
+}
+
+// ─── LOGO ──────────────────────────────────────────────────────────────────────
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: t.$space-2;
+  flex-shrink: 0;
+}
+
+.logo-mark {
+  font-size: 18px;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.logo-text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--text);
+  letter-spacing: -0.5px;
+}
+
+// ─── NAV LINKS ────────────────────────────────────────────────────────────────
+
+.nav-links {
+  display: flex;
+  gap: t.$space-1;
+  flex: 1;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar { display: none; }
+
+  @media (max-width: t.$bp-md) { display: none; }
+}
+
+.nav-btn {
+  appearance: none;
+  background: none;
+  border: none;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text3);
+  padding: 6px 14px;
+  border-radius: t.$r-sm;
+  white-space: nowrap;
+  transition: color 0.15s, background-color 0.15s;
+  letter-spacing: 0.5px;
+
+  &:hover {
+    color: var(--text2);
+    background-color: var(--bg3);
+  }
+
+  &.active {
+    color: var(--accent);
+    background-color: rgba(t.$color-accent, 0.08);
+  }
+}
+
+// ─── HAMBURGER ────────────────────────────────────────────────────────────────
+
+.hamburger {
+  display: none;
+  appearance: none;
+  background: none;
+  border: none;
+  padding: t.$space-2;
+  flex-direction: column;
+  gap: 5px;
+  margin-inline-start: auto;
+
+  span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--text2);
+    transition: all 0.2s;
+  }
+
+  @media (max-width: t.$bp-md) { display: flex; }
+}
+
+// ─── MOBILE MENU ──────────────────────────────────────────────────────────────
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  padding: t.$space-3 t.$space-4;
+  border-top: 1px solid var(--border);
+  background: rgba(t.$color-bg, 0.95);
+
+  &.open { display: flex; }
+
+  .nav-btn {
+    text-align: start;
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+}
