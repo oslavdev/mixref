@@ -1,7 +1,24 @@
 {
   "name": "mixref",
   "compatibility_date": "2026-03-13",
+
   "assets": {
-    "directory": "./"
+    "directory": "./",
+    "exclude": [
+      "node_modules",
+      ".git",
+      ".github",
+      ".husky",
+      "src",
+      "yarn.lock",
+      "package.json",
+      "eslint.config.js",
+      "vitest.config.js",
+      ".stylelintrc.json",
+      "Dangerfile.js",
+      "README.md",
+      "CHANGELOG.md",
+      "dist/styles.min.css"
+    ]
   }
 }
