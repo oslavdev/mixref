@@ -1,0 +1,16 @@
+node_modules
+.git
+.github
+.husky
+src
+yarn.lock
+package.json
+package-lock.json
+eslint.config.js
+vitest.config.js
+.stylelintrc.json
+Dangerfile.js
+README.md
+CHANGELOG.md
+wrangler.jsonc
+dist/styles.min.css
