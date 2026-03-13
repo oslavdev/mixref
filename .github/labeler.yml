@@ -1,0 +1,5 @@
+"area: style":
+  - src/scss/**/*
+
+"area: js":
+  - src/js/**/*
