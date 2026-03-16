@@ -97,9 +97,9 @@ if (!CONVENTIONAL_PATTERN.test(danger.github.pr.title)) {
   fail(
     `PR title \`${danger.github.pr.title}\` does not follow ` +
     '[Conventional Commits](https://www.conventionalcommits.org/) format.\n\n' +
-    'Expected: `type(scope): description` — e.g. `feat: add reverb section` ' +
-    'or `fix(tooltip): clamp position on narrow screens`.\n\n' +
-    'This is required because the PR title becomes the squash-merge commit ' +
-    'message that **semantic-release** uses to determine the version bump.',
+    'Expected: `type(scope): description`\n' +
+    'e.g. `feat: add reverb section` or `fix(tooltip): clamp on narrow screens`\n\n' +
+    'The PR title becomes the squash-merge commit message that\n' +
+    '**semantic-release** uses to determine the version bump.',
   )
 }
